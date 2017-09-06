@@ -1,44 +1,54 @@
-/**
- *
- */
 package acown09_assign1;
 
 import java.util.Scanner;
 
 /**
- * Created by: Admir Cosic, 2017-08-24 Last changed by: Admir Cosic, 2017-08-27
+ * Created by: Admir Cosic, 2017-08-24 
+ * Last changed by: Admir Cosic, 2017-08-31
  *
- * Exercise 1: Backwards Write a program Backwards.java that reads a line of
- * text from the keyboard and then prints the sentence in reverse order on the
- * screen. An execution might look like this:
- *
- * Type a line of text: Hello! My name is Jonas Lundberg. Backwards: .grebdnuL
- * sanoJ si eman yM !olleH
- *
+ * Exercise 1: Backwards
  */
 
 public class Backwards {
 
 	public static void main(String[] args) {
-		char restart;
-		String input;
 		Scanner keyboard = new Scanner(System.in);
-		/*
-		 * Used a try-catch-finally statement without the catch part because Eclipse was
-		 * complaining that the scanner was not closed and it could lead to resource
-		 * leaks, i figured i could close it in the finally statement
-		 */
+		reverseStringInput(keyboard);
+	}
+	
+	private static void reverseStringInput(Scanner keyboard) {
+		char restart=0;
+		String input=null;
+		
 		try {
 			do {
-				ExcerciseHelpers.PrintWelcommeMessage(
-						"*        This litle program is used to reverse strings of text.        *");
-				input = ExcerciseHelpers.GetString("Enter a line of text: ", keyboard);
-				System.out.println("The backwards text string is: " + (new StringBuilder(input).reverse().toString()));
-				restart = ExcerciseHelpers.GetTryAgainChar(keyboard);
+				input = getString("Enter a line of text: ", keyboard);
+				System.out.println("The backwards text string is: " + new StringBuilder(input).reverse());
+				restart = getTryAgainChar(keyboard);
 			} while (restart == 'Y' || restart == 'y');
 		} finally {
 			keyboard.close();
 			System.exit(0);
 		}
+	}
+	
+	private static char getTryAgainChar(Scanner keyboard) {
+		String input = null;
+		System.out.println("\n");
+		System.out.println("Do you want to restart the program. (Y/N)?");
+		System.out.println("Remember you must type a 'Y' for yes or an 'N' for no!");
+		do {
+			if (keyboard.hasNextLine()) {
+				input = keyboard.nextLine();
+			} else {
+				keyboard.next();
+			}
+		} while (input == null);
+		return input.charAt(0);
+	}
+	
+	private static String getString(String queryText, Scanner keyboard) {
+		System.out.println(queryText);
+		return keyboard.nextLine();
 	}
 }

@@ -1,41 +1,29 @@
-/**
- *
- */
 package acown09_assign1;
 
 import java.util.Scanner;
 
 /**
- * Created by: Admir Cosic, 2017-08-25 Last changed by: Admir Cosic, 2017-08-27
+ * Created by: Admir Cosic, 2017-08-25
+ * Last changed by: Admir Cosic, 2017-08-31
  *
- * Exercise 3: CountDigits Write a program CountDigits.java that for an
- * arbitrary positive integer N (read from the keyboard) prints the number of
- * zeros, odd digits, even digits and computes the sum of all digits. An
- * execution might look like this:
- *
- * Provide a positive integer: 6789500 Zeros: 2 Odd: 3 Even: 2 Sum: 35 Notice,
- * we treat zero as neither odd nor even.
- *
+ * Exercise 3: CountDigits
  */
 
 public class CountDigits {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
-		char restart;
+		Scanner keyboard = new Scanner(System.in);
+		countIntDigits(keyboard);
+	}
+
+	private static void countIntDigits(Scanner keyboard) {
+		char restart = 0;
 		int input;
 		int zeros;
 		int odds;
 		int evens;
 		int sum;
-		Scanner keyboard = new Scanner(System.in);
-		/*
-		 * Used a try-catch-finally statement without the catch part because Eclipse was
-		 * complaining that the scanner was not closed and it could lead to resource
-		 * leaks, i figured i could close it in the finally statement
-		 */
+		
 		try {
 			do {
 				input = 0;
@@ -43,10 +31,7 @@ public class CountDigits {
 				odds = 0;
 				evens = 0;
 				sum = 0;
-
-				ExcerciseHelpers.PrintWelcommeMessage(
-						"*     This litle program is used to count digits in a positive integer.*");
-				input = ExcerciseHelpers.GetPositiveIntegerWithValidation("Provide a positive integer: ", keyboard);
+				input = getPositiveIntegerWithValidation("Provide a positive integer: ", keyboard);
 				String numbers = Integer.toString(input);
 
 				for (int i = 0; i < numbers.length(); i++) {
@@ -64,14 +49,58 @@ public class CountDigits {
 				}
 				String[] resultPrintout = { "\n", "Zeros: " + zeros, "\n", "Odd: " + odds, "\n", "Even: " + evens, "\n",
 						"Sum: " + sum, "\n", "\n" };
-				ExcerciseHelpers.PrintStringArray(resultPrintout);
+				printStringArray(resultPrintout);
 				keyboard.nextLine();
-				restart = ExcerciseHelpers.GetTryAgainChar(keyboard);
+				restart = getTryAgainChar(keyboard);
 			} while (restart == 'Y' || restart == 'y');
 		} finally {
 			keyboard.close();
 			System.exit(0);
 		}
 	}
-
+	private static void printStringArray(String[] stringArray) {
+		for (int i = 0; i < stringArray.length; i++) {
+			System.out.print(stringArray[i]);
+		}
+	}
+	private static int getPositiveIntegerWithValidation(String queryText, Scanner keyboard) {
+		boolean isPositive = false;
+		int value = 0;
+		int input = 0;
+		System.out.println(queryText);
+		do {
+			if (keyboard.hasNextInt()) {
+				input = keyboard.nextInt();
+				if (input == 0) {
+					System.out.println("You entered a number that is equal to zero");
+					System.out.println("Please try again: ");
+				} else if (input > 0) {
+					value = input;
+					isPositive = true;
+				} else {
+					System.out.println("You entered a number that is negative");
+					System.out.println("Please try again: ");
+				}
+			} else {
+				System.out.println("Only numbers are valid entries!");
+				System.out.println("Please try again:");
+				keyboard.next();
+			}
+		} while (!isPositive);
+		return value;
+	}
+	private static char getTryAgainChar(Scanner keyboard) {
+		String input = null;
+		System.out.println("\n");
+		System.out.println("Do you want to restart the program. (Y/N)?");
+		System.out.println("Remember you must type a 'Y' for yes or an 'N' for no!");
+		do {
+			if (keyboard.hasNextLine()) {
+				input = keyboard.nextLine();
+			} else {
+				keyboard.next();
+			}
+		} while (input == null);
+		return input.charAt(0);
+	}
 }
