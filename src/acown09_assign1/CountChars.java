@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 /**
  * Created by: Admir Cosic, 2017-08-26
- * Last changed by: Admir Cosic, 2017-08-31
+ * Last changed by: Admir Cosic, 2017-09-07
  *
  * Exercise 6: CountChars
  */
@@ -25,42 +25,42 @@ public class CountChars {
     }
 
 	private static void countFileChars(String filepath) {
-		int upperCase = 0;
-        int lowerCase = 0;
-        int whitespace = 0;
-        int numbers = 0;
-        int other = 0;
-        Scanner fileScan = null;
+		int upperCaseChars = 0;
+        int lowerCaseChars = 0;
+        int whitespaceChars = 0;
+        int numberChars = 0;
+        int otherChars = 0;
+        Scanner textfileScanner = null;
 
         try {
-            File file = new File(filepath);
-            fileScan = new Scanner(file);
+            File textfile = new File(filepath);
+            textfileScanner = new Scanner(textfile);
 
-            while(fileScan.hasNext()) {
-                String row = fileScan.nextLine();
+            while(textfileScanner.hasNext()) {
+                String row = textfileScanner.nextLine();
                 for(int i = 0; i < row.length(); i++) {
                     char character = row.charAt(i);
 
                     if(Character.isUpperCase(character)) {
-                        upperCase++;
+                        upperCaseChars++;
                         continue;
                     }
 
                     if(Character.isLowerCase(character)) {
-                        lowerCase++;
+                        lowerCaseChars++;
                         continue;
                     }
 
                     if(Character.isDigit(character)) {
-                        numbers++;
+                        numberChars++;
                         continue;
                     }
 
                     if(Character.isWhitespace(character)) {
-                        whitespace++;
+                        whitespaceChars++;
                         continue;
                     }
-                    other++;
+                    otherChars++;
                 }
             }
 
@@ -74,9 +74,9 @@ public class CountChars {
         }
         finally
         {
-        	fileScan.close();
+        	textfileScanner.close();
         }
-		String[] resultPrintout = { "Uppsercase: " + upperCase,"Lowercase: " + lowerCase, "Whitespaces: " + whitespace,"Numbers: " + numbers, "Others: " + other};
+		String[] resultPrintout = { "Uppsercase: " + upperCaseChars,"Lowercase: " + lowerCaseChars, "Whitespaces: " + whitespaceChars,"Numbers: " + numberChars, "Others: " + otherChars};
 		printStringArray(resultPrintout);
 	}
 	

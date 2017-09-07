@@ -4,35 +4,25 @@ import java.util.Scanner;
 
 /**
  * Created by: Admir Cosic, 2017-08-25
- * Last changed by: Admir Cosic, 2017-08-31
+ * Last changed by: Admir Cosic, 2017-09-07
  *
  * Exercise 3: CountDigits
  */
 
 public class CountDigits {
-
+	public static int zeros=0;
+	public static int odds=0;
+	public static int evens=0;
+	public static int sum=0;
+	
 	public static void main(String[] args) {
 		Scanner keyboard = new Scanner(System.in);
 		countIntDigits(keyboard);
 	}
 
 	private static void countIntDigits(Scanner keyboard) {
-		char restart = 0;
-		int input;
-		int zeros;
-		int odds;
-		int evens;
-		int sum;
-		
 		try {
-			do {
-				input = 0;
-				zeros = 0;
-				odds = 0;
-				evens = 0;
-				sum = 0;
-				input = getPositiveIntegerWithValidation("Provide a positive integer: ", keyboard);
-				String numbers = Integer.toString(input);
+				String numbers = getPositiveIntegerWithValidation("Provide a positive integer: ", keyboard);
 
 				for (int i = 0; i < numbers.length(); i++) {
 					int number = Character.getNumericValue(numbers.charAt(i));
@@ -50,9 +40,6 @@ public class CountDigits {
 				String[] resultPrintout = { "\n", "Zeros: " + zeros, "\n", "Odd: " + odds, "\n", "Even: " + evens, "\n",
 						"Sum: " + sum, "\n", "\n" };
 				printStringArray(resultPrintout);
-				keyboard.nextLine();
-				restart = getTryAgainChar(keyboard);
-			} while (restart == 'Y' || restart == 'y');
 		} finally {
 			keyboard.close();
 			System.exit(0);
@@ -63,7 +50,7 @@ public class CountDigits {
 			System.out.print(stringArray[i]);
 		}
 	}
-	private static int getPositiveIntegerWithValidation(String queryText, Scanner keyboard) {
+	private static String getPositiveIntegerWithValidation(String queryText, Scanner keyboard) {
 		boolean isPositive = false;
 		int value = 0;
 		int input = 0;
@@ -87,20 +74,6 @@ public class CountDigits {
 				keyboard.next();
 			}
 		} while (!isPositive);
-		return value;
-	}
-	private static char getTryAgainChar(Scanner keyboard) {
-		String input = null;
-		System.out.println("\n");
-		System.out.println("Do you want to restart the program. (Y/N)?");
-		System.out.println("Remember you must type a 'Y' for yes or an 'N' for no!");
-		do {
-			if (keyboard.hasNextLine()) {
-				input = keyboard.nextLine();
-			} else {
-				keyboard.next();
-			}
-		} while (input == null);
-		return input.charAt(0);
+		return Integer.toString(value);
 	}
 }
