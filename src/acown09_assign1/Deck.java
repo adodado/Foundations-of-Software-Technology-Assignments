@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 public class Deck {
-	public List<Card> deck = new ArrayList();
+	public List<Card> deck = new ArrayList<Card>();
 	
 	public Deck() {
 		for(Card.Suite suite: Card.Suite.values()) {
@@ -29,7 +29,7 @@ public class Deck {
 			Collections.shuffle(deck);
 		}
 		else {
-			System.out.println("Shuffle not possible. Deck does not contain 52 cards!");
+			System.out.println("Error: it is only be possible to shuffle the deck when it has 52 cards!");
 		}
 	}
 	

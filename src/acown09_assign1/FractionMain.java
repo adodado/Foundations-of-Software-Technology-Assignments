@@ -3,42 +3,21 @@ package acown09_assign1;
 public class FractionMain {
 
 	public static void main(String[] args) {
-		System.out.println("\n---------------------------------\n           Fraction!\n---------------------------------\n\n");
-
 		Fraction fraction1 = new Fraction(2, 5);
 		Fraction fraction2 = new Fraction(3, 4);
-		
-		// getNumerator and getDenominator
-		System.out.println("Testing to get numerator and denominator of the first fraction");
-		System.out.println("Numerator: " + fraction1.getNumerator() + "\nDenominator: " + fraction1.getDenominator());
-		
-		// isNegative
-		System.out.println("\n----------------------------------\nTesting if the fractional number is negative");
-		System.out.println("True/False: " + fraction1.isNegative());
-		
-		// add
-		System.out.println("\n----------------------------------\nTesting to add the two fractions");
-		System.out.print(fraction1 + " + " + fraction2 + " = ");
-		System.out.println(fraction1.add(fraction2).simplify());
-		
-		// subtract
-		System.out.println("\n----------------------------------\nTesting to subtract the two fractions");
-		System.out.print(fraction1 + " - " + fraction2 + " = ");
-		System.out.println(fraction1.subtract(fraction2));
-		
-		// multiply
-		System.out.println("\n----------------------------------\nTesting to multiply the two fractions");
-		System.out.print(fraction1 + " * " + fraction2 + " = ");
-		System.out.println(fraction1.multiply(fraction2).simplify());
-		
-		// divide
-		System.out.println("\n----------------------------------\nTesting to divide the two fractions");
-		System.out.print(fraction1 + " / " + fraction2 + " = ");
-		System.out.println(fraction1.divide(fraction2).simplify());
-		
-		// isEqual
-		System.out.println("\n----------------------------------\nTesting to see if the two fractions are equal");
-		System.out.println("Fraction1: " + fraction1 + "\nFraction2: " + fraction2);
-		System.out.println("True/False: " + fraction1.isEqualTo(fraction2));
+
+		String[] resultPrintout = { "Test: get numerator and denominator of fraction","\n","Numerator: " + fraction1.getNumerator()
+		, "\n", "Denominator: " + fraction1.getDenominator(), "\n", "Test: is fractional number negative","\n","True/False: " + fraction1.isNegative()
+		,"\n","Test: add 2 fractions","\n",fraction1 + " + " + fraction2 + " = "+fraction1.add(fraction2).simplify(),"\n","Test: subrtact 2 fractions","\n",
+		fraction1 + " - " + fraction2 + " = " + fraction1.subtract(fraction2),"\n","Test: multiply 2 fractions","\n",fraction1 + " * " + fraction2 + " = " + fraction1.multiply(fraction2).simplify(),"\n",
+		"Test: divide 2 fractions","\n",fraction1 + " / " + fraction2 + " = " + fraction1.divide(fraction2).simplify(),"\n", "Test: are 2 fractions equal","\n",
+		"Fraction1: " + fraction1 + "Fraction2: " + fraction2 + " = " + "True/False: " + fraction1.isEqualTo(fraction2)};
+		printStringArray(resultPrintout);
+	}
+
+	private static void printStringArray(String[] stringArray) {
+		for (int i = 0; i < stringArray.length; i++) {
+			System.out.print(stringArray[i]);
+		}
 	}
 }

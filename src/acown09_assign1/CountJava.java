@@ -6,58 +6,60 @@ import java.util.Scanner;
 
 /**
  * Created by: Admir Cosic, 2017-08-27
- * Last changed by: Admir Cosic, 2017-08-31
+ * Last changed by: Admir Cosic, 2017-09-07
  *
  * Exercise 9: CountJava
  */
 
 public class CountJava {
-
+	public static Scanner fileScanner;
+	
 	public static void main(String[] args) {
-		try {
-
-			String directory = args[0];
-			File folder = new File(directory);
-
-			System.out.println("Reading from root directory: " + directory);
-			listFilesInDirectory(folder);
-
-		} 
-		catch (FileNotFoundException e) {
-			System.out.println("Error reading file!");
-		}
+        if(args.length != 0) {
+    		try {
+    			File directoryParameter = new File(args[0]);
+    			System.out.println("Root directory: " + directoryParameter);
+    			scanJavaFilesInDirectory(directoryParameter);
+    		} 
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            System.out.println("Error: directory parameter is missing!");
+            System.exit(1);
+        }
 	}
 
-	public static void listFilesInDirectory(File folder) throws FileNotFoundException{
-		for(File file: folder.listFiles()) {
-			if(file.isDirectory()) {
-				listFilesInDirectory(file);
-			} else if(file.getName().contains(".java")){
-				int amountOfLines = scanFileForLines(file);
-				printToConsole(file.getName(), amountOfLines);
-			}
-		}
-	}
-
-	public static int scanFileForLines(File file) {
-		int amountOfLines = 1;
+	public static void scanJavaFilesInDirectory(File directory) throws FileNotFoundException{
 		try {
-			Scanner scanner = new Scanner(file);
-			
-			while(scanner.hasNextLine()) {
-				scanner.nextLine();
-				amountOfLines++;
+			for(File file: directory.listFiles()) {
+				if(file.isDirectory()) {
+					scanJavaFilesInDirectory(file);
+				} else if(file.getName().contains(".java")){
+					int numberOfLines = scanFileForLines(file);
+					print(file.getName(), numberOfLines);
+				}
 			}
-			scanner.close();
 		} 
 		catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		return amountOfLines;
 	}
 
-	public static void printToConsole(String string, int amountOfLines){
-		System.out.println(string + " - Lines: " + amountOfLines);
+	public static int scanFileForLines(File file) throws FileNotFoundException {
+		int numberOfLines = 1;
+		fileScanner = new Scanner(file);
+			while(fileScanner.hasNextLine()) {
+				fileScanner.nextLine();
+				numberOfLines++;
+			} 
+			fileScanner.close();
+		return numberOfLines;
+	}
+
+	public static void print(String string, int numberOfLines){
+		System.out.println(string + " - Lines: " + numberOfLines);
 	}
 
 }

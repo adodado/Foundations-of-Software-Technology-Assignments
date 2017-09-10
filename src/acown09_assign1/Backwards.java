@@ -19,8 +19,8 @@ public class Backwards {
 	
 	private static void reverseStringInput(Scanner keyboard) {
 		try {
-				input = getString("Enter a line of text: ", keyboard);
-				System.out.println("The backwards text string is: " + new StringBuilder(input).reverse());
+				input = getString("Enter line of text: ", keyboard);
+				System.out.println("Backwards text string is: " + new StringBuilder(input).reverse());
 		} finally {
 			keyboard.close();
 			System.exit(0);

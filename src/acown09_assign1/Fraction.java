@@ -2,22 +2,22 @@ package acown09_assign1;
 
 /**
  * Created by: Admir Cosic, 2017-08-26
- * Last changed by: Admir Cosic, 2017-08-31
+ * Last changed by: Admir Cosic, 2017-09-10
  *
  * Exercise 11: Fraction
  */
 
 public class Fraction {
 
-	private int _numerator;
-	private int _denominator;
+	private int numerator;
+	private int denominator;
 
-	public Fraction(int numerator, int denominator) {
-		_numerator = numerator;
-		_denominator = denominator;
+	public Fraction(int fractionNumerator, int fractionDenominator) {
+		numerator = fractionNumerator;
+		denominator = fractionDenominator;
 
-		if(_denominator == 0) {
-			throw new IllegalArgumentException("Denominator is zero");
+		if(denominator == 0) {
+			throw new IllegalArgumentException("Error: Fractional number has a zero denominator!");
 		}
 	}
 
@@ -68,14 +68,14 @@ public class Fraction {
 	}
 
 	public int getNumerator() {
-		return _numerator;
+		return numerator;
 	}
 
 	public int getDenominator() {
-		return _denominator;
+		return denominator;
 	}
 	public Fraction simplify() {
-		int gcd = findGcd(this); // Greatest common divisor
+		int gcd = findGcd(this);
 		int newNumerator = getNumerator();
 		int newDenominator = getDenominator();
 
@@ -84,7 +84,6 @@ public class Fraction {
 		return new Fraction(newNumerator, newDenominator);
 	}
 
-	/** Finds GCD (greatest common divisor) using Euclid's algorithm. */
 	public int findGcd(Fraction fraction) {
 		int num1 = fraction.getNumerator();
 		int num2 = fraction.getDenominator();

@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 /**
  * Created by: Admir Cosic, 2017-08-29
- * Last changed by: Admir Cosic, 2017-08-31
+ * Last changed by: Admir Cosic, 2017-09-10
  *
  * Exercise 14: Queue
  */
@@ -19,13 +19,11 @@ public class Queue implements QueueInterface {
 		return size;
 	}
 	
-	/** Check if the queue is empty. */
 	@Override
 	public boolean isEmpty() {
 		return size == 0;
 	}
 	
-	/** Add a new object at the end of the queue. */
 	@Override
 	public void enqueue(Object object) {
 		if(head == null) {
@@ -39,7 +37,6 @@ public class Queue implements QueueInterface {
 		size++;
 	}
 	
-	/** Return and remove the first object in the queue. */
 	@Override
 	public Object dequeue() {
 		if(head == null) {
@@ -54,7 +51,6 @@ public class Queue implements QueueInterface {
 		}
 	}
 	
-	/** Return first object in the queue (head). */
 	@Override
 	public Object first() {
 		if(head == null) {
@@ -65,7 +61,6 @@ public class Queue implements QueueInterface {
 		}
 	}
 	
-	/** Return last object in the queue (tail). */
 	@Override
 	public Object last() {
 		if(head == null) {
@@ -76,7 +71,6 @@ public class Queue implements QueueInterface {
 		}
 	}
 	
-	/** Check if the queue contains a specific object. */
 	@Override
 	public boolean contains(Object object) {
 		Iterator<Object> iterator = iterator();
@@ -89,9 +83,8 @@ public class Queue implements QueueInterface {
 		return false;
 	}
 	
-	/** Returns a new ListIterator. */
 	@Override
-	public Iterator iterator() {
+	public Iterator<Object> iterator() {
 		return new ListIterator();
 	}
 	

@@ -2,7 +2,7 @@ package acown09_assign1;
 
 /**
  * Created by: Admir Cosic, 2017-08-28
- * Last changed by: Admir Cosic, 2017-08-31
+ * Last changed by: Admir Cosic, 2017-09-10
  *
  * Exercise 12: Deck
  */
@@ -12,19 +12,22 @@ public class PlayCardsMain {
 		int handSize = 7;
 		Deck deck = new Deck();
 
-		System.out.println("Deck size: " + deck.deckSize());
-		System.out.println("Shuffling deck...\n--------------------------------------\n");
+		String[] startupMessage = { "Deck size: " + deck.deckSize(),"\n", "Shuffling.......","\n","Dealing cards.....","\n","\n"};
+		printStringArray(startupMessage);
 		deck.shuffle();
-
-		System.out.println("Handing out cards.\n");
 
 		for(int i = 0; i < handSize; i++) {
 			Card card = deck.handOutNextCard();
-			
-			System.out.println("Card value: " + card.getValue() + " - You got card: " + card.getRank() + " of " + card.getSuite());
+			String[] dealtCards = { "Value: " + card.getValue(),"\n", "Rank: " + card.getRank(),"\n","Suite: " + card.getSuite(),"\n"};
+			printStringArray(dealtCards);
 		}
-		
-		System.out.println("\n--------------------------------------\nYou got dealt " + handSize + " cards.");
-		System.out.println("Cards left in deck: " + deck.deckSize());
+		String[] endMessage = { "\n","\n","You were dealt "+ handSize + " cards.", "\n","There are " + deck.deckSize()+ " cards left in the deck!"};
+		printStringArray(endMessage);
+	}
+
+	private static void printStringArray(String[] stringArray) {
+		for (int i = 0; i < stringArray.length; i++) {
+			System.out.print(stringArray[i]);
+		}
 	}
 }

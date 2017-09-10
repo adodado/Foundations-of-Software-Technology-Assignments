@@ -1,10 +1,11 @@
 package acown09_assign1;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * Created by: Admir Cosic, 2017-08-29
- * Last changed by: Admir Cosic, 2017-08-31
+ * Last changed by: Admir Cosic, 2017-09-10
  *
  * Exercise 14: Queue
  */
@@ -17,54 +18,84 @@ public class QueueMain {
 		int testValue2 = 0;
 		for(int i = 0; i < amountOfElements; i++) {
 			queue.enqueue(i);
-		}
-		System.out.println("----------Queue----------\n");
+		}		
+		ArrayList<String> testResults = new ArrayList<String>();
+		testResults.add("-------------------------------------------------------------------------------------------");
+		testResults.add("Tests setup:");
+		testResults.add("\n");
+		String queueIterator = "Values in queue: ";
 		Iterator<Object> iterator = queue.iterator();
-		System.out.println("\nValues in queue: ");
 		while(iterator.hasNext()){
-			System.out.print(iterator.next() + ", ");
+			queueIterator += iterator.next() + ", ";
 		}
-		System.out.println("\n--------------------");
-		// Size
-		System.out.println("\nSize of queue: " + queue.size());
-		System.out.println("--------------------");
-		// First
+		testResults.add(queueIterator);
+		testResults.add("\n");
+		testResults.add("-------------------------------------------------------------------------------------------");
+		testResults.add("Queuesize: " + queue.size());
 		try {
-			System.out.println("\nFirst value in queue: " + queue.first());
-			System.out.println("--------------------");
+			testResults.add("\n");
+			testResults.add("Test: First method.");
+			testResults.add("\n");
+			testResults.add("First value in queue: " + queue.first());
+			testResults.add("\n");
+			testResults.add("-------------------------------------------------------------------------------------------");
 		}
 		catch(Exception e){
-			System.out.println("Error, Out of bounds! Exception was probably cast since queue is empty: " + e.getMessage());
+			System.out.println("Error: exception probably because queue is empty: " + e.getMessage());
 		}
-		// Last
 		try {
-			System.out.println("\nLast value in queue: " + queue.last());
-			System.out.println("--------------------");
+			testResults.add("\n");
+			testResults.add("Test: Last method.");
+			testResults.add("\n");
+			testResults.add("Last value in queue: " + queue.last());
+			testResults.add("\n");
+			testResults.add("-------------------------------------------------------------------------------------------");
 		}
 		catch(Exception e){
-			System.out.println("Error, Out of bounds! Exception was probably cast since queue is empty: " + e.getMessage());
+			System.out.println("Error: exception probably because queue is empty: " + e.getMessage());
 		}
-		// Dequeue
 		try {
-			System.out.println("\nTesting \"dequeue\"... \nResponse value: " + queue.dequeue());
-			System.out.println("\nFirst value is now: " + queue.first());
-			System.out.println("\nLast value is now: " + queue.last());
-			System.out.println("--------------------");
+			testResults.add("\n");
+			testResults.add("Test: Dequeue method.");
+			testResults.add("\n");
+			testResults.add("Dequeue response: " + queue.dequeue());
+			testResults.add("\n");
+			testResults.add("First value is now: " + queue.first());
+			testResults.add("\n");
+			testResults.add("Last value is now: " + queue.last());
+			testResults.add("\n");
+			testResults.add("-------------------------------------------------------------------------------------------");
 		}
 		catch(Exception e){
-			System.out.println("Error, Out of bounds! Exception was probably cast since queue is empty: " + e.getMessage());
+			System.out.println("Error: exception probably because queue is empty: " + e.getMessage());
 		}
-		// Contains
-		System.out.println("\nTesting \"contains\"... \n...with the value of '4' - Found object: " + queue.contains(testValue1));
-		System.out.println("\n...with the value of '0' -  Found object: " + queue.contains(testValue2));
-		System.out.println("--------------------");
-		// Dequeue until empty queue
-		System.out.println("\nTrying to \"dequeue\" until empty\n");
+		testResults.add("\n");
+		testResults.add("Test: Contains method.");
+		testResults.add("\n");
+		testResults.add("Contains method test value='6' : " + queue.contains(testValue1));
+		testResults.add("\n");
+		testResults.add("Contains method test value='0' : " + queue.contains(testValue2));
+		testResults.add("\n");
+		testResults.add("-------------------------------------------------------------------------------------------");
+		testResults.add("\n");
+		testResults.add("Test: Dequeue until empty test");
 		while(!queue.isEmpty()){
-			System.out.println("\nDequeue response (value): " + queue.dequeue());
-			System.out.println("Queue size after dequeue: " + queue.size() );
+			testResults.add("\n");
+			testResults.add("Dequeue result: " + queue.dequeue());
+			testResults.add("\n");
+			testResults.add("Queue size after dequeue: " + queue.size());
 		}
-		// IsEmpty
-		System.out.println("\nTesting \"isEmpty\"...\nAnswer (True/False): " + queue.isEmpty());
+		testResults.add("\n");
+		testResults.add("-------------------------------------------------------------------------------------------");
+		testResults.add("\n");
+		testResults.add("Test: Isempty method test.");		
+		testResults.add("\n");
+		testResults.add("Is queue empty = " + queue.isEmpty());
+		printArrayList(testResults);
+	}
+	private static void printArrayList(ArrayList<String> arrayList) {
+        for (int i = 0; i < arrayList.size(); i++) {
+        	System.out.println(arrayList.get(i));
+        }
 	}
 }

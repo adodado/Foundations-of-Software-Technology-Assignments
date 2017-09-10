@@ -69,23 +69,23 @@ public class Arrays {
 	}
 
 	public int[] sort(int[] arr) {
-		int[] sortedArr = arr.clone();
-		int counter = 0;
-		int temp;
-		boolean swapped = true;
-		while(swapped) {
-			swapped = false;
-			counter++;
-			for(int i = 0; i < sortedArr.length - counter; i++) {
-				if(sortedArr[i] > sortedArr[i + 1]) {
-					temp = sortedArr[i];
-					sortedArr[i] = sortedArr[i + 1];
-					sortedArr[i + 1] = temp;
-					swapped = true;
+		int[] returnArray = arr.clone();
+		int sortCounter = 0;
+		int temporaryValue;
+		boolean isSwapped = true;
+		while(isSwapped) {
+			isSwapped = false;
+			sortCounter++;
+			for(int i = 0; i < returnArray.length - sortCounter; i++) {
+				if(returnArray[i] > returnArray[i + 1]) {
+					temporaryValue = returnArray[i];
+					returnArray[i] = returnArray[i + 1];
+					returnArray[i + 1] = temporaryValue;
+					isSwapped = true;
 				}
 			}
 		}
-		return sortedArr;
+		return returnArray;
 	}
 
 	public boolean hasSubsequence(int[] arr, int[] sub) {
@@ -107,18 +107,18 @@ public class Arrays {
 	}
 
 	public int[] absDif(int[] arr1, int[] arr2) {
-		int[] newArr = arr1.clone();
+		int[] returnArray = arr1.clone();
 		try {
 			if(arr1.length != arr2.length) {
 				throw new Exception("Error: The two arrays have different lengths!");
 			}
 			for(int i = 0; i < arr1.length; i++) {
-				newArr[i] = arr1[i] - arr2[i];
+				returnArray[i] = arr1[i] - arr2[i];
 			}
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
 			System.exit(0);
 		}
-		return newArr;
+		return returnArray;
 	}
 }

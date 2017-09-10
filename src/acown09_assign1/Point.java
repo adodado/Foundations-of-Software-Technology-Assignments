@@ -2,7 +2,7 @@ package acown09_assign1;
 
 /**
  * Created by: Admir Cosic, 2017-08-29
- * Last changed by: Admir Cosic, 2017-08-31
+ * Last changed by: Admir Cosic, 2017-09-09
  *
  * Exercise 10: Point
  */
@@ -36,8 +36,6 @@ public class Point {
 				
 		double dist = p1.distanceTo(p2);
 		System.out.println("Point Distance: "+dist);
-		
-		
 				
 		p2.move(5,-2);         // ==> (8,2)
 		p1.moveToXY(8,2);      // ==> (8,2)		

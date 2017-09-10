@@ -2,7 +2,7 @@ package acown09_assign1;
 
 /**
  * Created by: Admir Cosic, 2017-08-28
- * Last changed by: Admir Cosic, 2017-08-31
+ * Last changed by: Admir Cosic, 2017-09-10
  *
  * Exercise 12: Deck
  */
@@ -18,25 +18,25 @@ public class Card {
 		Nine, Ten, Jack, Queen, King
 	}
 	
-	private Suite _suite;
-	private Rank _rank;
-	private int _value;
+	private Suite suite;
+	private Rank rank;
+	private int value;
 	
-	public Card(Suite suite, Rank rank, int value) {
-		_suite = suite;
-		_rank = rank;
-		_value = value;
+	public Card(Suite cardSuite, Rank cardRank, int cardValue) {
+		suite = cardSuite;
+		rank = cardRank;
+		value = cardValue;
 	}
 	
 	public Suite getSuite() {
-		return _suite;
+		return suite;
 	}
 	
 	public Rank getRank() {
-		return _rank;
+		return rank;
 	}
 	
 	public int getValue() {
-		return _value;
+		return value;
 	}
 }
